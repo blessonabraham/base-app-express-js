@@ -6,6 +6,8 @@ import { DAOServiceType, ServiceType, ControllerType } from './types/Types';
 
 export const App = () => {
   const theExpress = express();
+
+  // Should replace with TypeDI
   const daoService: DAOServiceType = new DAOService()
   const service: ServiceType = new Service(daoService)
   const controller: ControllerType = new Controller(service)
