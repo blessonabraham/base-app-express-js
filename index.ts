@@ -1,22 +1,19 @@
-import express, { Express, Request, response, Response } from 'express';
-import { requestResponder } from './src/utils/Utils';
+import express, { Express } from 'express';
 import * as dotenv from 'dotenv'
-import { BaseController } from './src/base/BaseController';
 import { Controller } from './src/controllers/Controller';
-import { BaseService } from './src/base/BaseService';
 import { Service } from './src/services/Service';
 import { DAOService } from './src/dao/DAOService';
-import { BaseDAOService } from './src/base/BaseDAOService';
+import { ControllerType, DAOServiceType, ServiceType } from './src/types/Types';
 
 const app: Express = express();
 dotenv.config()
 
-const theDAOService: BaseDAOService = new DAOService()
-const theService: BaseService = new Service(theDAOService)
-const theController: BaseController = new Controller(theService)
+const daoService: DAOServiceType  = new DAOService()
+const service: ServiceType = new Service(daoService)
+const controller: ControllerType  = new Controller(service)
 
 app.get('/', (req, res) => {
-  requestResponder(req, res, theController.getController)
+  res.json(controller.getController())
 });
 
 const port = process.env.SERVER_PORT

@@ -1,14 +1,15 @@
-import { BaseController } from "../base/BaseController";
-import { BaseService } from "../base/BaseService";
+import { ControllerType, ServiceType } from "../types/Types"
 
-export class Controller extends BaseController {
+export class Controller implements ControllerType {
 
-    constructor(baseService: BaseService) {
-        super(baseService)
+    service: ServiceType;
+
+    constructor(service: ServiceType) {
+        this.service = service
     }
 
     getController() {
-        return this.baseService.getService()
+        return this.service.getService()
     }
 
 }

@@ -1,15 +1,15 @@
-import { BaseDAOService } from "../base/BaseDAOService";
-import { BaseService } from "../base/BaseService";
-import { GetControllerResponse } from "../types/Types";
+import { DAOServiceType, GetControllerResponse, ServiceType } from "../types/Types";
 
-export class Service extends BaseService {
+export class Service implements ServiceType {
 
-    constructor(DAOService: BaseDAOService) {
-        super(DAOService)
+    daoService: DAOServiceType
+
+    constructor(daoService: DAOServiceType) {
+        this.daoService = daoService
     }
 
     getService(): GetControllerResponse {
-        return this.DAOService.getDAOService()
+        return this.daoService.getDAOService()
     }
 
 
