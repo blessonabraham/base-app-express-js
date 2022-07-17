@@ -9,13 +9,10 @@
       "noUnusedLocals": true,
       "noUnusedParameters": true
     },
-    // "files": [
-    //   "./node_modules/@types/mocha/index.d.ts",
-    //   "./node_modules/@types/node/index.d.ts"
-    // ],
     "include": [
       "src/**/*.ts",
-      "index.ts"
+      "index.ts",
+      "test/**/*.ts"
     ],
     "exclude": [
       "node_modules"
