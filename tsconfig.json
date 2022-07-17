@@ -4,7 +4,10 @@
       "module": "commonjs",
       "outDir": "dist",
       "sourceMap": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "noImplicitAny": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true
     },
     // "files": [
     //   "./node_modules/@types/mocha/index.d.ts",

@@ -12,7 +12,7 @@ const daoService: DAOServiceType  = new DAOService()
 const service: ServiceType = new Service(daoService)
 const controller: ControllerType  = new Controller(service)
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json(controller.getController())
 });
 
