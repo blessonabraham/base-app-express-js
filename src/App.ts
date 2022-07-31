@@ -1,20 +1,23 @@
-import express, { Request, Response } from 'express';
-import { Controller } from './controllers/Controller';
-import { DAOService } from './dao/DAOService';
-import { Service } from './services/Service';
-import { DAOServiceType, ServiceType, ControllerType } from './types/Types';
+import 'reflect-metadata';
+import { createExpressServer } from 'routing-controllers';
+import { UserController } from './Controllers/UserController';
 
-export const App = () => {
-  const theExpress = express();
+// TO-DO
+// Service Layer & DAO Layer
+// Env Config - dotenv
+// Authentication & Authorization
+// Utilities & Constants
+// Unit Test & E2E
+// Proper scripts
+// MongoDB and MySQL Wrapper
+// DI Injection XML?
+// Exception Handling
+// Logger
+// Readme
+// Deployment Setup - Dev, QA, Prod
 
-  // Should replace with TypeDI
-  const daoService: DAOServiceType = new DAOService()
-  const service: ServiceType = new Service(daoService)
-  const controller: ControllerType = new Controller(service)
+const app = createExpressServer({
+  controllers: [UserController],
+});
 
-  theExpress.get('/', (_req: Request, res: Response) => {
-    res.json(controller.getController())
-  });
-
-  return theExpress
-}
+app.listen(3000);
