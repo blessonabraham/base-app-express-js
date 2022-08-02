@@ -1,4 +1,4 @@
-import Container, { Service } from "typedi";
+import { Service } from "typedi";
 import { IUserDAOService, IUserService, UserType } from "../Types/UserTypes";
 
 @Service()

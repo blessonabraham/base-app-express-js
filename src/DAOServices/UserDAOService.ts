@@ -10,19 +10,19 @@ export class UserDAOService implements IUserDAOService {
         return "getAllUsers"
     }
 
-    getUserById(id: number) {
+    getUserById(_id: number) {
         return "getUserById"
     }
 
-    addUser(user: UserType) {
+    addUser(_user: UserType) {
         return "addUser"
     }
 
-    updateUser(id: number, user: UserType) {
+    updateUser(_id: number, _user: UserType) {
         return "updateUser"
     }
 
-    removeUser(id: number) {
+    removeUser(_id: number) {
         return "removeUser"
     }
 
