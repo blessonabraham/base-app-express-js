@@ -1,29 +1,35 @@
 import { Controller, Param, Body, Get, Post, Put, Delete } from 'routing-controllers';
+import { Service } from 'typedi';
+import { IUserService, UserType } from '../Types/UserTypes';
 
-@Controller()
+@Controller('/users')
+@Service()
 export class UserController {
-  @Get('/users')
-  getAll() {
-    return 'This action returns all users';
+
+  constructor(private userService: IUserService) { }
+
+  @Get('/')
+  getAllUsers() {
+    return this.userService.getAllUsers()
   }
 
-  @Get('/users/:id')
-  getOne(@Param('id') id: number) {
-    return 'This action returns user #' + id;
+  @Get('/:id')
+  getUserById(@Param('id') id: number) {
+    return this.userService.getUserById(id)
   }
 
-  @Post('/users')
-  post(@Body() user: any) {
-    return 'Saving user...';
+  @Post('/')
+  addUser(@Body() user: UserType) {
+    return this.userService.addUser(user)
   }
 
-  @Put('/users/:id')
-  put(@Param('id') id: number, @Body() user: any) {
-    return 'Updating a user...';
+  @Put('/:id')
+  updateUser(@Param('id') id: number, @Body() user: UserType) {
+    return this.userService.updateUser(id, user)
   }
 
-  @Delete('/users/:id')
-  remove(@Param('id') id: number) {
-    return 'Removing user...';
+  @Delete('/:id')
+  removeUser(@Param('id') id: number) {
+    return this.userService.removeUser(id)
   }
 }
