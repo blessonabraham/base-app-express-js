@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { IUserDAOService, UserReqDTO, UserType } from "../Types/UserTypes";
+import { IUserDAOService, UserReqDTO } from "../Types/UserTypes";
 
 @Service()
 export class UserDAOService implements IUserDAOService {

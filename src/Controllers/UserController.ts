@@ -1,6 +1,6 @@
 import { Param, Body, Get, Post, Put, Delete, Authorized, JsonController } from 'routing-controllers';
 import { Service } from 'typedi';
-import { IUserService, UserReqDTO, UserType } from '../Types/UserTypes';
+import { IUserService, UserReqDTO } from '../Types/UserTypes';
 
 @JsonController('/users')
 @Service()
