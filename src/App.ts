@@ -1,32 +1,28 @@
 import 'reflect-metadata';
+import 'dotenv/config'
 import { createExpressServer, useContainer } from 'routing-controllers';
 import Container from 'typedi';
+import { injectDependencies } from './Configs/InjectDependencies';
 import { UserController } from './Controllers/UserController';
-import { UserDAOService } from './DAOServices/UserDAOService';
-import { UserService } from './Services/UserService';
-import { IUserDAOService, IUserService } from './Types/UserTypes';
+import { authorization } from './Configs/Authorization';
 
 // TO-DO
-// Service Layer & DAO Layer - Done
-// Env Config - dotenv
-// Authentication & Authorization
-// Validation
+// MongoDB and MySQL Connect Wrapper
 // Utilities & Constants
 // Unit Test & E2E
 // Proper scripts
-// MongoDB and MySQL Wrapper
 // DI Injection XML?
 // Exception Handling
 // Logger
 // Readme
 // Deployment Setup - Dev, QA, Prod
+// Swagger
 
 useContainer(Container);
+injectDependencies()
 
-// Here we Inject dependencies and the order does matter
-Container.set(IUserDAOService, new UserDAOService())
-Container.set(IUserService, new UserService(Container.get(IUserDAOService)))
-
+const port = process.env.SERVICE_PORT || 3000
 createExpressServer({
+  authorizationChecker: authorization,
   controllers: [UserController],
-}).listen(3000, () => console.log(`[server]: Server is running`));
+}).listen(port, () => console.log(`[server]: Server is running at port:`, port));

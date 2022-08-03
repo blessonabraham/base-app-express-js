@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { IUserDAOService, IUserService, UserType } from "../Types/UserTypes";
+import { IUserDAOService, IUserService, UserReqDTO, UserType } from "../Types/UserTypes";
 
 @Service()
 export class UserService implements IUserService {
@@ -14,11 +14,11 @@ export class UserService implements IUserService {
         return this.userDAOService.getUserById(id);
     }
 
-    addUser(user: UserType) {
+    addUser(user: UserReqDTO) {
         return this.userDAOService.addUser(user);
     }
 
-    updateUser(id: number, user: UserType) {
+    updateUser(id: number, user: UserReqDTO) {
         return this.userDAOService.updateUser(id, user);
     }
 

@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { IUserDAOService, UserType } from "../Types/UserTypes";
+import { IUserDAOService, UserReqDTO, UserType } from "../Types/UserTypes";
 
 @Service()
 export class UserDAOService implements IUserDAOService {
@@ -14,12 +14,22 @@ export class UserDAOService implements IUserDAOService {
         return "getUserById"
     }
 
-    addUser(_user: UserType) {
-        return "addUser"
+    addUser(user: UserReqDTO)  {
+        return {
+            id: 0,
+            name: user.name,
+            email: user.email,
+            token: 'sdfsdfsdf'
+        }
     }
 
-    updateUser(_id: number, _user: UserType) {
-        return "updateUser"
+    updateUser(_id: number, user: UserReqDTO) {
+        return {
+            id: 0,
+            name: user.name,
+            email: user.email,
+            token: 'sdfsdfsdf'
+        }
     }
 
     removeUser(_id: number) {

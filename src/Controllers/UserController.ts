@@ -1,8 +1,8 @@
-import { Controller, Param, Body, Get, Post, Put, Delete } from 'routing-controllers';
+import { Param, Body, Get, Post, Put, Delete, Authorized, JsonController } from 'routing-controllers';
 import { Service } from 'typedi';
-import { IUserService, UserType } from '../Types/UserTypes';
+import { IUserService, UserReqDTO, UserType } from '../Types/UserTypes';
 
-@Controller('/users')
+@JsonController('/users')
 @Service()
 export class UserController {
 
@@ -13,18 +13,20 @@ export class UserController {
     return this.userService.getAllUsers()
   }
 
+  @Authorized()
   @Get('/:id')
   getUserById(@Param('id') id: number) {
     return this.userService.getUserById(id)
   }
 
   @Post('/')
-  addUser(@Body() user: UserType) {
+  addUser(@Body() user: UserReqDTO) {
     return this.userService.addUser(user)
   }
 
+  @Authorized()
   @Put('/:id')
-  updateUser(@Param('id') id: number, @Body() user: UserType) {
+  updateUser(@Param('id') id: number, @Body() user: UserReqDTO) {
     return this.userService.updateUser(id, user)
   }
 
